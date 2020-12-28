@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends App</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cards.css">
+</head>
+
+<body>
+  <main class="main">
+    <aside class="sidebar">
+      <form id="settings-form">
+        <div class="general-label">Gender:</div>
+        <input type="radio" name="gender" value="female">female</input>
+        <input type="radio" name="gender" value="male">male</input>
+        <input type="radio" name="gender" value="both" checked>both</input>
+
+        <div class="general-label">Sort:</div>
+        <input type="radio" name="sort-type" value="A-Z" checked>A-Z</input>
+        <input type="radio" name="sort-type" value="Z-A">Z-A</input>
+        <input type="radio" name="sort-type" value="ageAsc">Age ascending</input>
+        <input type="radio" name="sort-type" value="ageDesc">Age descending</input>
+      </form>
+    </aside>
+    <div class="content">
+      <div class="users"></div>
+      <button id="addUsers">Add 5 users</button>
+    </div>
+  </main>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
