@@ -9,7 +9,6 @@ export class Settings {
   }
 
   applySettings({ target }) {
-    console.log(target)
     const value = target.value
     switch (target.name) {
       case 'gender':

@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: 'Roboto', sans-serif;
 }
 
 html, body {
@@ -17,6 +18,8 @@ html, body {
   position: fixed;
   width: 200px;
   height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
   background: yellow;
 }
 
@@ -28,4 +31,56 @@ html, body {
 
 body {
   background: rgb(255, 144, 144)
+}
+
+.form-sort-list {
+  margin: 20px 0;
+}
+
+.form-sort-list li {
+  margin: 10px 0;
+}
+
+.radio-input {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.input-label {
+  cursor: pointer;
+}
+
+.label-text {
+  position: relative;
+  z-index: 10;
+  transition: color 0.3s ease;
+}
+
+.label-text:before {
+  display: block;
+  content: '';
+  width: 0%;
+  top: -5px;
+  left: -5px;
+  border-radius: 10px;
+  height: 100%;
+  padding: 5px;
+  position: absolute;
+  background: grey;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.3s ease;
+}
+
+.radio-input:checked + .label-text:before {
+  width: 100%;
+  opacity: 1;
+  transition: 0.3s ease;
+}
+
+.radio-input:checked + .label-text {
+  color: white;
+  transition: color 0.3s ease;
 }
