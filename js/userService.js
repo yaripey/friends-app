@@ -40,6 +40,14 @@ export function updateUsersToShow() {
         return false
       }
     }
+    if (!(loadedUser.firstName + ' ' + loadedUser.lastName).toLowerCase().includes(settings.nameFilter)) {
+      return false
+    }
+    if (settings.ageFilter) {
+      if (!(loadedUser.age === settings.ageFilter)) {
+        return false
+      }
+    }
     return true
   })
 
@@ -78,8 +86,6 @@ export function updateUsersToShow() {
       })
       break;
   }
-
-  console.log(tempUserArr)
 
 
   const usersContainer = document.querySelector('.users')

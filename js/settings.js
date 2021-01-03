@@ -4,16 +4,29 @@ export class Settings {
   constructor() {
     this.gender = 'both'
     this.sortType = 'A-Z'
+    this.nameFilter = ''
+    this.ageFilter = null
   }
 
   applySettings({ target }) {
+    console.log(target)
+    const value = target.value
     switch (target.name) {
       case 'gender':
-        this.gender = target.value
+        this.gender = value
         break;
       case 'sort-type':
-        this.sortType = target.value
+        this.sortType = value
         break;
+      case 'name-filter':
+        this.nameFilter = value
+        break;
+      case 'age-filter':
+        if (value === '') {
+          this.ageFilter = null
+        } else {
+          this.ageFilter = parseInt(value)
+        }
     }
 
     updateUsersToShow()
@@ -22,4 +35,5 @@ export class Settings {
 
 
 export const settings = new Settings()
-document.querySelector('#settings-form').addEventListener('change', (event) => { settings.applySettings(event) })
+// document.querySelector('#settings-form').addEventListener('change', (event) => { settings.applySettings(event) })
+document.querySelector('#settings-form').addEventListener('input', (event) => { settings.applySettings(event) })
