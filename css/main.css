@@ -120,6 +120,7 @@ body {
   right: 15px;
   cursor: pointer;
   z-index: 3;
+  display: none;
 }
 
 .mobile-menu:after, .mobile-menu:before {
@@ -157,5 +158,9 @@ body {
   .sidebar.opened {
     transition: 0.3s ease;
     left: 0;
+  }
+
+  .mobile-menu {
+    display: block;
   }
 }
