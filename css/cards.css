@@ -182,3 +182,18 @@
     margin: auto;
   }
 }
+
+@media(max-width: 500px) {
+  .expanded-card-container {
+    align-items: flex-start;
+    z-index: 5;
+  }
+
+  .expanded-card {
+    border-radius: 0;
+  }
+
+  .big-upper-part {
+    flex-direction: column;
+  }
+}

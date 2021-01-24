@@ -32,7 +32,7 @@ export class User {
     this.expandedCardContainer.classList.add('expanded-card-container')
     this.expandedCardContainer.id = 'expanded-card'
     this.expandedCardContainer.innerHTML = `
-      <div class="expanded-card hidden">
+      <div class="expanded-card">
         <button id="big-close-button"></button>
         <div class="big-upper-part">
           <img class="big-avatar-picture" src="${this.picture.large}">
@@ -53,6 +53,5 @@ export class User {
     return this.expandedCardContainer
   }
 }
-
 
 export const loadedUsers = []

@@ -34,5 +34,4 @@ export class Settings {
 
 
 export const settings = new Settings()
-// document.querySelector('#settings-form').addEventListener('change', (event) => { settings.applySettings(event) })
 document.querySelector('#settings-form').addEventListener('input', (event) => { settings.applySettings(event) })

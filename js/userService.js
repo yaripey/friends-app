@@ -1,18 +1,39 @@
 import { User, loadedUsers } from './users.js'
 import { settings } from './settings.js'
+let fetchingTries = 0
+const maxTriesAmount = 5;
 
-export async function loadUsers(amount) {
+function handleErrors(response) {
+  if (!response.ok) {
+    throw Error(response.statusText);
+  }
+  return response;
+}
+
+export function loadUsers(amount) {
   const usersURL = `https://randomuser.me/api/?results=${amount}`
-  const response = await fetch(usersURL)
-  const usersJSON = await response.json()
-  const usersArray = usersJSON.results
-
-  usersArray.forEach(loadedUser => {
-    const id = loadedUsers.length
-    const newUser = new User({ ...loadedUser, id })
-    loadedUsers.push(newUser)
-  })
-  updateUsersToShow()
+  fetch(usersURL)
+    .then(handleErrors)
+    .then((response) => response.json())
+    .then((responseResultsObject) => {
+      const usersArray = responseResultsObject.results
+      usersArray.forEach(loadedUser => {
+        const id = loadedUsers.length
+        const newUser = new User({ ...loadedUser, id })
+        loadedUsers.push(newUser)
+      })
+      updateUsersToShow()
+    })
+    .catch(function () {
+      console.log('Error occured, trying again.')
+      if (fetchingTries < maxTriesAmount) {
+        fetchingTries++;
+        loadUsers(amount)
+      } else {
+        alert('Sorry, something went wrong. Please try again.')
+        fetchingTries = 0;
+      }
+    })
 }
 
 export function peekUser({ target }) {
@@ -86,7 +107,6 @@ export function updateUsersToShow() {
       })
       break;
   }
-
 
   const usersContainer = document.querySelector('.users')
   const tempContainer = document.createElement('div')

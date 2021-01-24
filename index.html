@@ -13,7 +13,9 @@
 
 <body>
   <main class="main">
+    <span class="mobile-menu"></span>
     <aside class="sidebar">
+      <h1>Friends App</h1>
       <form id="settings-form">
         <div class="general-label">Gender:</div>
         <ul class="form-sort-list">
@@ -55,15 +57,16 @@
         </ul>
 
         <div class="general-label">Filter by name:</div>
-        <input type="text" name="name-filter">
+        <input class="text-input" type="text" name="name-filter">
 
         <div class="general-label">Filter by age:</div>
-        <input type="number" name="age-filter">
+        <input class="text-input" type="number" name="age-filter">
+
       </form>
+      <button id="addUsers">Add more users</button>
     </aside>
     <div class="content">
       <div class="users"></div>
-      <button id="addUsers">Add 5 users</button>
     </div>
   </main>
   <script type="module" src="js/main.js"></script>
