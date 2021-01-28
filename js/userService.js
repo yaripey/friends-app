@@ -4,36 +4,36 @@ let fetchingTries = 0
 const maxTriesAmount = 5;
 
 function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
+  console.log(response);
 }
 
-export function loadUsers(amount) {
+async function fetchUsers(amount) {
   const usersURL = `https://randomuser.me/api/?results=${amount}`
-  fetch(usersURL)
-    .then(handleErrors)
-    .then((response) => response.json())
-    .then((responseResultsObject) => {
-      const usersArray = responseResultsObject.results
-      usersArray.forEach(loadedUser => {
-        const id = loadedUsers.length
-        const newUser = new User({ ...loadedUser, id })
-        loadedUsers.push(newUser)
-      })
-      updateUsersToShow()
-    })
-    .catch(function () {
-      console.log('Error occured, trying again.')
-      if (fetchingTries < maxTriesAmount) {
-        fetchingTries++;
-        loadUsers(amount)
-      } else {
-        alert('Sorry, something went wrong. Please try again.')
-        fetchingTries = 0;
-      }
-    })
+  try {
+    const fetchedResult = await fetch(usersURL)
+    const fetchedUsers = await fetchedResult.json()
+    console.log(fetchedUsers.results)
+    return fetchedUsers.results
+  } catch (err) {
+    console.log(err, 'Trying to fetch again.')
+    if (fetchingTries < maxTriesAmount) {
+      fetchingTries++;
+      return fetchUsers(amount)
+    } else {
+      console.log('Too many fetching attempts. Check connection or try again later.')
+      fetchingTries = 0;
+    }
+  }
+}
+
+export async function loadUsers(amount) {
+  const fetchedUsers = await fetchUsers(amount)
+  fetchedUsers.forEach(loadedUser => {
+    const id = loadedUsers.length
+    const newUser = new User({...loadedUser, id})
+    loadedUsers.push(newUser)
+  })
+  updateUsersToShow()
 }
 
 export function peekUser({ target }) {
