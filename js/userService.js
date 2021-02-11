@@ -19,8 +19,16 @@ async function fetchUsers(amount) {
   }
 }
 
+function fetchErrorHandler() {
+  document.querySelector('.content').innerHTML = "All fetching attempts failed. Please check your internet connection or try again later."
+}
+
 export async function loadUsers(amount) {
   const fetchedUsers = await fetchUsers(amount)
+  if (!fetchedUsers) {
+    fetchErrorHandler()
+    return
+  }
   fetchedUsers.forEach(loadedUser => {
     const id = loadedUsers.length
     const newUser = new User({...loadedUser, id})
