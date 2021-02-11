@@ -8,15 +8,12 @@ async function fetchUsers(amount) {
   try {
     const fetchedResult = await fetch(usersURL)
     const fetchedUsers = await fetchedResult.json()
-    console.log(fetchedUsers.results)
     return fetchedUsers.results
   } catch (err) {
-    console.log(err, 'Trying to fetch again.')
     if (fetchingTries < maxTriesAmount) {
       fetchingTries++;
       return fetchUsers(amount)
     } else {
-      console.log('Too many fetching attempts. Check connection or try again later.')
       fetchingTries = 0;
     }
   }
